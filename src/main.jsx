@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
 import ErrorPage from './pages/404'
-import MainLayout from './layouts/MainLayout'
+import MainLayout from './Layouts/MainLayout'
 
 // Import halaman-halaman
 import AboutMe from './pages/AboutMe'
