@@ -8,7 +8,7 @@ export const awardingsData = [
     issuer: "MKKS Kota Semarang",
     date: "February 2026",
     description: "1st place winner in the city-level student competition (Semarang) for the Cyber Security category. Successfully solved multiple challenges including web exploitation and cryptography against top SMK participants across Semarang.",
-    link: "https://example.com/certificate/1",
+    link: "https://drive.google.com/file/d/1WHuoQy6HDnf8OSn2Vbpra9LkdbLQWyRV/view?usp=sharing",
     icon: <Award className="text-amber-400" size={24} />
   },
   {

@@ -25,7 +25,7 @@ const Contacts = () => {
         name: "LinkedIn",
         username: "in/ahdanfirdaus",
         icon: <Linkedin size={20} />,
-        link: "https://linkedin.com/in/ahdanfirdaus",
+        link: "https://www.linkedin.com/in/ahdan-firdaus-5751763b1/",
         color: "hover:text-blue-400"
       },
       {
