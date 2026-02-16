@@ -18,7 +18,7 @@ import Footer from '../components/Footer';
 
 const AboutMe = () => {
   const handleDownloadCV = () => {
-    const cvUrl = '/CV.pdf';
+    const cvUrl = '/Muhammad_Ahdan_Firdaus_CV.pdf';
     const link = document.createElement('a');
     link.href = cvUrl;
     link.download = 'Muhammad_Ahdan_Firdaus_CV.pdf';
