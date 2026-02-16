@@ -18,7 +18,7 @@ import Footer from '../components/Footer';
 
 const AboutMe = () => {
   const handleDownloadCV = () => {
-    const cvUrl = '/sample.pdf';
+    const cvUrl = '/CV.pdf';
     const link = document.createElement('a');
     link.href = cvUrl;
     link.download = 'Muhammad_Ahdan_Firdaus_CV.pdf';
@@ -229,7 +229,7 @@ const AboutMe = () => {
               <a href="https://github.com/AhdanFirdaus" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
                 <Github size={16} className="text-gray-400 hover:text-blue-400" />
               </a>
-              <a   href="https://www.linkedin.com/in/username-kamu" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
+              <a   href="https://www.linkedin.com/in/ahdan-firdaus-5751763b1/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
                 <Linkedin size={16} className="text-gray-400 hover:text-blue-400" />
               </a>
               <a href="mailto:muhammadahdanf1@gmail.com" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
