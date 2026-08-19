@@ -7,7 +7,7 @@ export const metadata = {
   description: 'Certifications and courses completed by Ahdan Firdaus in IT, Cybersecurity, and Web Development.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 10; // Auto-revalidate Notion data every 10s
 
 export default async function CompletionsPage() {
   const data = await getCertificates('completions');

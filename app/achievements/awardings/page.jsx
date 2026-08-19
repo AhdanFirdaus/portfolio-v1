@@ -7,7 +7,7 @@ export const metadata = {
   description: 'Competition awards and honors earned by Ahdan Firdaus in Cyber Security and Web Development.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 10; // Auto-revalidate Notion data every 10s
 
 export default async function AwardingsPage() {
   const data = await getCertificates('awardings');
