@@ -14,7 +14,7 @@ import {
 export const navItems = [
   {
     id: 'intro',
-    label: 'Introduction    ',
+    label: 'Introduction',
     icon: <Rocket className="text-blue-400" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
@@ -80,11 +80,19 @@ export const navItems = [
     ]
   },
   {
-    id: 'blog',
-    label: 'CTF & Blog',
-    icon: <BookOpen className="text-blue-400" size={18} strokeWidth={1.5} />,
-    type: 'file',
-    path: '/blog'
+    id: 'blog-folder',
+    label: 'Blog',
+    icon: <FolderClosed className="text-blue-400" size={18} strokeWidth={1.5} />,
+    type: 'folder',
+    children: [
+      {
+        id: 'blog-posts',
+        label: 'Articles & CTF',
+        icon: <BookOpen className="text-blue-300" size={16} strokeWidth={1.5} />,
+        type: 'file',
+        path: '/blog'
+      }
+    ]
   },
   {
     id: 'contacts',

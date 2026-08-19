@@ -22,21 +22,21 @@ export default function ContactsPage() {
       {
         name: "GitHub",
         username: "@ahdanfirdaus",
-        icon: <Github size={20} />,
+        icon: <Github size={18} />,
         link: "https://github.com/ahdanfirdaus",
         color: "hover:text-gray-300"
       },
       {
         name: "LinkedIn",
         username: "in/ahdanfirdaus",
-        icon: <Linkedin size={20} />,
+        icon: <Linkedin size={18} />,
         link: "https://www.linkedin.com/in/ahdan-firdaus-5751763b1/",
         color: "hover:text-blue-400"
       },
       {
         name: "Instagram",
         username: "@ahdan.firdaus",
-        icon: <Instagram size={20} />,
+        icon: <Instagram size={18} />,
         link: "https://instagram.com/ahdan.firdaus",
         color: "hover:text-pink-400"
       }
@@ -45,23 +45,14 @@ export default function ContactsPage() {
 
   return (
     <div className="space-y-8">
-      {/* Path navigasi */}
-      <div className="flex items-center gap-2 text-sm font-mono text-gray-500 border-b border-blue-500/10 pb-4">
-        <span className="text-blue-400">~/portfolio</span>
-        <span className="text-gray-600">/</span>
-        <span className="text-blue-400">Contacts</span>
-      </div>
-
       {/* Header */}
       <div className="relative">
-        <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 via-transparent to-transparent blur-3xl -z-10" />
-        
         <div className="flex items-start gap-4">
-          <div className="p-3 bg-blue-500/10 rounded-xl">
-            <Mail size={28} className="text-blue-400" strokeWidth={1.5} />
+          <div className="p-3 bg-blue-500/10 rounded-md border border-blue-500/20">
+            <Mail size={26} className="text-blue-400" strokeWidth={1.5} />
           </div>
           <div>
-            <h1 className="text-3xl md:text-4xl font-mono font-bold text-white mb-2">
+            <h1 className="text-3xl md:text-4xl font-mono font-bold text-white mb-2 tracking-tight">
               Contacts
             </h1>
             <p className="text-gray-400 text-sm font-mono flex items-center gap-2">
@@ -77,22 +68,22 @@ export default function ContactsPage() {
         {/* Left Column - Contact Info */}
         <div className="lg:col-span-1 space-y-4">
           {/* Email Card */}
-          <div className="bg-[#0f1422] rounded-xl border border-blue-500/10 p-5">
+          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 p-5">
             <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
-              <Mail size={16} className="text-blue-400" />
+              <Mail size={15} className="text-blue-400" />
               <span className="text-xs font-mono text-gray-400">email</span>
             </div>
             
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-[#1a1f2e] rounded-lg border border-blue-500/10">
-                <div className="p-2 bg-blue-500/10 rounded-lg">
-                  <Mail size={16} className="text-blue-400" />
+              <div className="flex items-center gap-3 p-3 bg-[#131928] rounded-md border border-blue-500/10">
+                <div className="p-2 bg-blue-500/10 rounded-md">
+                  <Mail size={15} className="text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500">primary</p>
+                  <p className="text-[10px] font-mono text-gray-500">primary</p>
                   <a 
                     href={`mailto:${contactInfo.email}`}
-                    className="text-sm text-blue-400 hover:text-blue-300 font-mono transition-colors"
+                    className="text-xs text-blue-400 hover:text-blue-300 font-mono transition-colors"
                   >
                     {contactInfo.email}
                   </a>
@@ -104,7 +95,7 @@ export default function ContactsPage() {
             <div className="mt-4 pt-4 border-t border-blue-500/10">
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="flex items-center justify-center gap-2 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg text-blue-400 hover:text-blue-300 transition-all text-sm font-mono"
+                className="flex items-center justify-center gap-2 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-md text-blue-400 hover:text-blue-300 transition-all text-xs font-mono border border-blue-500/20"
               >
                 <MessageSquare size={14} />
                 <span>Send Email Directly</span>
@@ -113,9 +104,9 @@ export default function ContactsPage() {
           </div>
 
           {/* Social Media Card */}
-          <div className="bg-[#0f1422] rounded-xl border border-blue-500/10 p-5">
+          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 p-5">
             <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
-              <PersonStanding size={16} className="text-blue-400" />
+              <PersonStanding size={15} className="text-blue-400" />
               <span className="text-xs font-mono text-gray-400">social</span>
             </div>
             
@@ -126,14 +117,14 @@ export default function ContactsPage() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-3 p-3 bg-[#1a1f2e] hover:bg-[#242937] rounded-lg border border-blue-500/10 transition-all group ${social.color}`}
+                  className={`flex items-center gap-3 p-3 bg-[#131928] hover:bg-[#1a2336] rounded-md border border-blue-500/10 transition-all group ${social.color}`}
                 >
-                  <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                  <div className="p-2 bg-blue-500/10 rounded-md group-hover:bg-blue-500/20 transition-colors">
                     {social.icon}
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs text-gray-500">{social.name}</p>
-                    <p className="text-sm text-gray-300 group-hover:text-inherit transition-colors">
+                    <p className="text-[10px] font-mono text-gray-500">{social.name}</p>
+                    <p className="text-xs font-mono text-gray-300 group-hover:text-inherit transition-colors">
                       {social.username}
                     </p>
                   </div>
@@ -145,13 +136,13 @@ export default function ContactsPage() {
 
         {/* Right Column - Contact Form */}
         <div className="lg:col-span-2">
-          <div className="bg-[#0f1422] rounded-xl border border-blue-500/10 overflow-hidden">
+          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 overflow-hidden">
             <div className="p-6">
               <div className="mb-6">
-                <h2 className="text-xl font-mono font-semibold text-white mb-2">
+                <h2 className="text-xl font-mono font-semibold text-white mb-1 tracking-tight">
                   Send me a message
                 </h2>
-                <p className="text-sm text-gray-400">
+                <p className="text-xs font-mono text-gray-400">
                   Fill out the form below and I'll get back to you as soon as possible.
                 </p>
               </div>

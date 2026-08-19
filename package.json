@@ -13,10 +13,10 @@
     "@emailjs/browser": "^4.4.1",
     "@notionhq/client": "^2.2.15",
     "lucide-react": "^0.564.0",
-    "next": "^15.1.7",
+    "next": "^15.5.23",
     "notion-to-md": "^3.1.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "tech-stack-icons": "^3.5.8"
   },
   "devDependencies": {
@@ -27,6 +27,8 @@
     "@types/react-dom": "^19.0.4",
     "eslint": "^9.20.1",
     "eslint-config-next": "^15.1.7",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "postcss": "^8.5.2",
     "tailwindcss": "^4.0.7"
   }

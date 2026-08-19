@@ -11,25 +11,14 @@ export const metadata = {
 export default function SkillsPage() {
   return (
     <div className="space-y-8">
-      {/* Path navigasi */}
-      <div className="flex items-center gap-2 text-sm font-mono text-gray-500 border-b border-blue-500/10 pb-4">
-        <span className="text-blue-400">~/portfolio</span>
-        <span className="text-gray-600">/</span>
-        <span className="text-gray-400">Skills</span>
-        <span className="text-gray-600">/</span>
-        <span className="text-blue-400">Technologies</span>
-      </div>
-
       {/* Header */}
       <div className="relative">
-        <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 via-transparent to-transparent blur-3xl -z-10" />
-        
         <div className="flex items-start gap-4">
-          <div className="p-3 bg-blue-500/10 rounded-xl">
-            <Layers size={28} className="text-blue-400" strokeWidth={1.5} />
+          <div className="p-3 bg-blue-500/10 rounded-md border border-blue-500/20">
+            <Layers size={26} className="text-blue-400" strokeWidth={1.5} />
           </div>
           <div>
-            <h1 className="text-3xl md:text-4xl font-mono font-bold text-white mb-2">
+            <h1 className="text-3xl md:text-4xl font-mono font-bold text-white mb-2 tracking-tight">
               Skills & Technologies
             </h1>
             <p className="text-gray-400 text-sm font-mono flex items-center gap-2">
@@ -42,16 +31,16 @@ export default function SkillsPage() {
 
       {/* Quick Stats */}
       <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-        <div className="flex items-center gap-2 bg-[#0f1422] px-3 py-1.5 rounded-full border border-blue-500/20">
+        <div className="flex items-center gap-2 bg-[#0d121f] px-3 py-1.5 rounded-md border border-blue-500/20">
           <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
-          <span className="text-gray-300">Total Skills:</span>
+          <span className="text-gray-400">Total Skills:</span>
           <span className="text-white font-semibold">
             {skillsData.categories.reduce((acc, cat) => acc + cat.skills.length, 0)}
           </span>
         </div>
-        <div className="flex items-center gap-2 bg-[#0f1422] px-3 py-1.5 rounded-full border border-blue-500/20">
+        <div className="flex items-center gap-2 bg-[#0d121f] px-3 py-1.5 rounded-md border border-blue-500/20">
           <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
-          <span className="text-gray-300">Categories:</span>
+          <span className="text-gray-400">Categories:</span>
           <span className="text-white font-semibold">
             {skillsData.categories.length}
           </span>
