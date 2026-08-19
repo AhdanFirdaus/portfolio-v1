@@ -16,7 +16,7 @@ import { navItems } from './NavItems';
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [openFolders, setOpenFolders] = useState(['intro', 'blog-folder']);
+  const [openFolders, setOpenFolders] = useState(['intro']);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredFolder, setHoveredFolder] = useState(null);
 
