@@ -7,7 +7,8 @@ import {
   BadgeCheck,
   Mail,
   Terminal,
-  FileCode
+  FileCode,
+  BookOpen
 } from 'lucide-react';
 
 export const navItems = [
@@ -77,6 +78,13 @@ export const navItems = [
         path: '/achievements/completions'
       }
     ]
+  },
+  {
+    id: 'blog',
+    label: 'CTF & Blog',
+    icon: <BookOpen className="text-blue-400" size={18} strokeWidth={1.5} />,
+    type: 'file',
+    path: '/blog'
   },
   {
     id: 'contacts',

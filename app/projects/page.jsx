@@ -1,9 +1,14 @@
 import { FolderKanban, Terminal, Briefcase } from 'lucide-react';
-import { projectsData } from '../components/data/ProjectsData';
-import ProjectCard from '../components/ProjectCard';
-import Footer from '../components/Footer';
+import { projectsData } from '../../src/components/data/ProjectsData';
+import ProjectCard from '../../src/components/ProjectCard';
+import Footer from '../../src/components/Footer';
 
-const Projects = () => {
+export const metadata = {
+  title: 'Projects',
+  description: 'Showcase of web application and cybersecurity projects built by Ahdan Firdaus.',
+};
+
+export default function ProjectsPage() {
   return (
     <div className="space-y-8">
       {/* Path navigasi */}
@@ -12,7 +17,7 @@ const Projects = () => {
         <span className="text-gray-600">/</span>
         <span className="text-gray-400">My Work</span>
         <span className="text-gray-600">/</span>
-        <span className="text-gray-400">Projects</span>
+        <span className="text-blue-400">Projects</span>
       </div>
 
       {/* Header */}
@@ -55,27 +60,7 @@ const Projects = () => {
         ))}
       </div>
 
-
-      {/* Add custom CSS for animations */}
-      <style>{`
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                    }
-                    }
-                    
-                    .animate-fadeIn {
-                        animation: fadeIn 0.5s ease-out forwards;
-                        }
-                        `}</style>
-        <Footer/>
+      <Footer/>
     </div>
   );
-};
-
-export default Projects;
+}

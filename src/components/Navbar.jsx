@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   ChevronRight, 
   ChevronDown, 
@@ -12,7 +15,7 @@ import {
 import { navItems } from './NavItems';
 
 const Navbar = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const [openFolders, setOpenFolders] = useState(['intro']);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredFolder, setHoveredFolder] = useState(null);
@@ -31,16 +34,15 @@ const Navbar = () => {
 
   // Auto open folder berdasarkan path aktif
   useEffect(() => {
-    // Cari folder mana yang berisi file dengan path yang cocok
     navItems.forEach(item => {
       if (item.type === 'folder' && item.children) {
-        const hasActiveChild = item.children.some(child => child.path === location.pathname);
+        const hasActiveChild = item.children.some(child => child.path === pathname);
         if (hasActiveChild && !openFolders.includes(item.id)) {
           setOpenFolders(prev => [...prev, item.id]);
         }
       }
     });
-  }, [location.pathname]);
+  }, [pathname, openFolders]);
 
   const toggleFolder = (folderId) => {
     setOpenFolders(prev =>
@@ -101,12 +103,14 @@ const Navbar = () => {
     }
 
     // Untuk file item
+    const isActive = pathname === item.path;
+
     return (
-      <NavLink
+      <Link
         key={item.id}
-        to={item.path}
+        href={item.path}
         onClick={closeMobileMenu}
-        className={({ isActive }) =>
+        className={
           `w-full flex items-center gap-2 px-3 py-2.5 transition-all duration-200 group relative ${
             isActive 
               ? 'text-blue-400 bg-blue-500/10' 
@@ -117,7 +121,7 @@ const Navbar = () => {
       >
         {/* Hover effect line */}
         <span className={`absolute left-0 w-0.5 h-0 group-hover:h-full transition-all duration-200 ${
-          location.pathname === item.path ? 'bg-blue-400 h-full' : 'bg-blue-400'
+          isActive ? 'bg-blue-400 h-full' : 'bg-blue-400'
         }`} />
         
         <span className="transition-colors">
@@ -125,17 +129,17 @@ const Navbar = () => {
         </span>
         <span className="text-sm tracking-wide">{item.label}</span>
         
-        {/* Active indicator - hanya muncul jika aktif */}
-        {location.pathname === item.path && (
+        {/* Active indicator */}
+        {isActive && (
           <span className="absolute right-3 w-1.5 h-1.5 bg-blue-400 rounded-full" />
         )}
-      </NavLink>
+      </Link>
     );
   };
 
   return (
     <>
-      {/* Mobile Menu Button - Berubah antara Menu dan X */}
+      {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
         className="lg:hidden fixed top-4 right-4 z-[100] p-2.5 bg-[#1a2639] border border-blue-500/20 rounded-lg text-blue-400 hover:text-blue-300 transition-all duration-200 shadow-lg"
@@ -169,7 +173,6 @@ const Navbar = () => {
         {/* Header dengan VSCode style */}
         <div className="sticky top-0 bg-[#0f1422] border-b border-blue-500/10 p-3 z-10">
           <div className="flex items-center gap-3">
-            {/* VSCode window dots */}
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
@@ -188,12 +191,12 @@ const Navbar = () => {
           EXPLORER
         </div>
 
-        {/* Navigation Items - flex-1 agar mendorong footer ke bawah */}
+        {/* Navigation Items */}
         <nav className="flex-1 py-2">
           {navItems.map(item => renderNavItem(item))}
         </nav>
 
-        {/* Footer - mentok di bawah */}
+        {/* Footer */}
         <div className="bg-[#0f1422] border-t border-blue-500/10 p-2 text-xs font-mono">
           <div className="flex items-center justify-between text-gray-500">
             <div className="flex items-center gap-3">

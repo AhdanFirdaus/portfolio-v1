@@ -7,10 +7,15 @@ import {
   MessageSquare,
   PersonStanding
 } from 'lucide-react';
-import ContactForm from '../components/ContactForm';
-import Footer from '../components/Footer';
+import ContactForm from '../../src/components/ContactForm';
+import Footer from '../../src/components/Footer';
 
-const Contacts = () => {
+export const metadata = {
+  title: 'Contacts',
+  description: 'Get in touch with Ahdan Firdaus for collaboration, software engineering, or cybersecurity projects.',
+};
+
+export default function ContactsPage() {
   const contactInfo = {
     email: "muhammadahdanf1@gmail.com",
     socials: [
@@ -44,7 +49,7 @@ const Contacts = () => {
       <div className="flex items-center gap-2 text-sm font-mono text-gray-500 border-b border-blue-500/10 pb-4">
         <span className="text-blue-400">~/portfolio</span>
         <span className="text-gray-600">/</span>
-        <span className="text-gray-400">Contacts</span>
+        <span className="text-blue-400">Contacts</span>
       </div>
 
       {/* Header */}
@@ -160,6 +165,4 @@ const Contacts = () => {
       <Footer/>
     </div>
   );
-};
-
-export default Contacts;
+}

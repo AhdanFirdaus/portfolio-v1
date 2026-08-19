@@ -1,11 +1,12 @@
-// src/components/ContactForm.jsx
+'use client';
+
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 
 const ContactForm = () => {
   const formRef = useRef();
-  const [status, setStatus] = useState('idle'); // idle, sending, success, error
+  const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,10 +14,10 @@ const ContactForm = () => {
     message: ''
   });
 
-  // Ambil credentials dari environment variables
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  // Support Next.js NEXT_PUBLIC_ and Vite env variables
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || process.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || process.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || process.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const handleChange = (e) => {
     setFormData({
@@ -29,7 +30,6 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // Validasi environment variables
     if (!serviceId || !templateId || !publicKey) {
       console.error('EmailJS credentials are missing');
       setStatus('error');
@@ -38,7 +38,6 @@ const ContactForm = () => {
     }
 
     try {
-      // Format timestamp untuk EmailJS
       const now = new Date();
       const formattedDate = now.toLocaleString('en-US', {
         weekday: 'long',
@@ -50,7 +49,6 @@ const ContactForm = () => {
         hour12: true
       });
 
-      // Tambahkan timestamp ke form data
       const templateParams = {
         name: formData.name,
         email: formData.email,
@@ -80,14 +78,12 @@ const ContactForm = () => {
           message: ''
         });
         
-        // Reset status setelah 5 detik
         setTimeout(() => setStatus('idle'), 5000);
       }
     } catch (error) {
       console.error('EmailJS Error:', error);
       setStatus('error');
       
-      // Reset status error setelah 5 detik
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
@@ -164,13 +160,13 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           disabled={status === 'sending'}
-          rows="4"
+          rows={4}
           className="w-full bg-[#1a1f2e] border border-blue-500/20 rounded-lg px-4 py-3 text-gray-300 placeholder-gray-600 focus:outline-none focus:border-blue-400/50 transition-colors font-mono text-sm resize-none disabled:opacity-50"
           placeholder="Write your message here..."
         />
       </div>
 
-      {/* Hidden inputs untuk timestamp (opsional) */}
+      {/* Hidden inputs */}
       <input type="hidden" name="date" value={new Date().toLocaleString()} />
 
       {/* Submit Button */}

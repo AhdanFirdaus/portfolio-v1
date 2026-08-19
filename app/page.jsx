@@ -1,3 +1,5 @@
+'use client';
+
 import { 
   Terminal, 
   MapPin, 
@@ -14,9 +16,9 @@ import {
   Calendar,
   Heart,
 } from 'lucide-react';
-import Footer from '../components/Footer';
+import Footer from '../src/components/Footer';
 
-const AboutMe = () => {
+export default function Home() {
   const handleDownloadCV = () => {
     const cvUrl = '/Muhammad_Ahdan_Firdaus_CV.pdf';
     const link = document.createElement('a');
@@ -35,21 +37,19 @@ const AboutMe = () => {
         <span className="text-gray-600">/</span>
         <span className="text-gray-400">Introduction</span>
         <span className="text-gray-600">/</span>
-        <span className="text-gray-400">About Me</span>
+        <span className="text-blue-400">About Me</span>
       </div>
 
-      {/* Profile Section with Photo - Diperbaiki layoutnya */}
+      {/* Profile Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 via-transparent to-transparent blur-3xl -z-10" />
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column - Photo (Lebih proporsional) */}
+          {/* Left Column - Photo */}
           <div className="lg:col-span-4">
             <div className="relative group max-w-sm mx-auto lg:mx-0">
-              {/* Background glow effect */}
               <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-blue-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300" />
               
-              {/* Photo container dengan aspect ratio yang pas */}
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border-2 border-blue-500/30 bg-[#0f1422]">
                 <img 
                   src="/me.png"
@@ -58,7 +58,7 @@ const AboutMe = () => {
                 />
               </div>
 
-              {/* Status badge - Lebih ramping */}
+              {/* Status badge */}
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-[#0f1422] border border-blue-500/30 rounded-full px-3 py-1 flex items-center gap-1.5 shadow-lg whitespace-nowrap">
                 <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
                 <span className="text-[10px] font-mono text-gray-300">Open to opportunities</span>
@@ -66,9 +66,8 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* Right Column - Info (Lebih lebar) */}
+          {/* Right Column - Info */}
           <div className="lg:col-span-8 space-y-5">
-            {/* Name and Title */}
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white mb-3">
                 Muhammad Ahdan Firdaus
@@ -86,7 +85,6 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              {/* Quick Info Row - Grid lebih rapat */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
                 <div className="flex items-center gap-2 text-sm text-gray-400 bg-[#0f1422]/50 p-2 rounded-lg border border-blue-500/10">
                   <MapPin size={14} className="text-blue-400 flex-shrink-0" />
@@ -103,7 +101,6 @@ const AboutMe = () => {
               </div>
             </div>
 
-            {/* Download CV Button - Lebih compact */}
             <button
               onClick={handleDownloadCV}
               className="group inline-flex items-center gap-2 px-5 py-2.5 bg-linear-to-r from-blue-500/20 to-blue-600/20 hover:from-blue-500/30 hover:to-blue-600/30 border border-blue-500/40 rounded-lg text-blue-400 hover:text-blue-300 transition-all duration-200 cursor-pointer"
@@ -115,7 +112,7 @@ const AboutMe = () => {
         </div>
       </div>
 
-      {/* Quote Section - Dibuat lebih menarik */}
+      {/* Quote Section */}
       <div className="relative mt-6">
         <div className="absolute inset-0 bg-linear-to-r from-blue-500/10 via-blue-500/5 to-transparent blur-2xl" />
         <div className="relative bg-[#0f1422] p-6 rounded-xl border border-blue-500/20 overflow-hidden">
@@ -137,9 +134,8 @@ const AboutMe = () => {
         </div>
       </div>
 
-      {/* Bio Section - Layout 2 kolom yang lebih seimbang */}
+      {/* Bio Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
-        {/* Main Bio - 2 kolom */}
         <div className="lg:col-span-2 space-y-4">
           <div className="bg-[#0f1422] p-6 rounded-xl border border-blue-500/10 h-full">
             <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
@@ -175,7 +171,6 @@ const AboutMe = () => {
           </div>
         </div>
 
-        {/* Right Sidebar - 1 kolom dengan cards yang lebih rapi */}
         <div className="space-y-4">
           {/* Interests Card */}
           <div className="bg-[#0f1422] p-5 rounded-xl border border-blue-500/10">
@@ -229,7 +224,7 @@ const AboutMe = () => {
               <a href="https://github.com/AhdanFirdaus" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
                 <Github size={16} className="text-gray-400 hover:text-blue-400" />
               </a>
-              <a   href="https://www.linkedin.com/in/ahdan-firdaus-5751763b1/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
+              <a href="https://www.linkedin.com/in/ahdan-firdaus-5751763b1/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
                 <Linkedin size={16} className="text-gray-400 hover:text-blue-400" />
               </a>
               <a href="mailto:muhammadahdanf1@gmail.com" className="p-2.5 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20">
@@ -240,7 +235,7 @@ const AboutMe = () => {
         </div>
       </div>
 
-      {/* Terminal Style Stats - Dibuat lebih menarik */}
+      {/* Terminal Style Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
         <div className="bg-[#0f1422] p-4 rounded-xl border border-blue-500/10 hover:border-blue-500/30 transition-all">
           <div className="flex items-center gap-2 text-xs font-mono text-gray-500 mb-2">
@@ -282,6 +277,4 @@ const AboutMe = () => {
       <Footer/>
     </div>
   );
-};
-
-export default AboutMe;
+}

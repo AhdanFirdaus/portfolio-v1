@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
 const Cursor = () => {
@@ -47,7 +49,6 @@ const Cursor = () => {
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
 
-      // Kalau baru muncul lagi, snap posisi biar gak ketinggalan
       if (!isVisible.current) {
         cursorPosition.current = { x: e.clientX, y: e.clientY };
         showCursor();

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import SkillCard from './SkillCard';
@@ -16,7 +18,6 @@ const CategorySection = ({ category, index }) => {
         className="w-full flex items-center justify-between p-4 hover:bg-[#1a1f2e] transition-colors group"
       >
         <div className="flex items-center gap-3">
-          {/* Category Icon */}
           <div className="p-2.5 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
             {category.icon}
           </div>
@@ -28,7 +29,6 @@ const CategorySection = ({ category, index }) => {
           </div>
         </div>
 
-        {/* Expand/Collapse Indicator */}
         <div className="flex items-center gap-2">
           <span className="text-xs text-gray-500 group-hover:text-blue-400 transition-colors">
             {isExpanded ? 'collapse' : 'expand'}

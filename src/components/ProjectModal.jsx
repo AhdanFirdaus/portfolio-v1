@@ -1,3 +1,5 @@
+'use client';
+
 import { 
   X, 
   Calendar, 
@@ -7,15 +9,14 @@ import {
   Globe, 
   Github,
   ExternalLink,
-  List,
-  Clock
+  List
 } from 'lucide-react';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
-  if (!isOpen) return null;
+  if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
       {/* Overlay */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -65,7 +66,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
               </div>
             )}
 
-            {/* Overlay gradient */}
             <div className="absolute inset-0 bg-linear-to-t from-[#0f1422] via-transparent to-transparent" />
           </div>
 
@@ -95,7 +95,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">
-              {project.links.github && (
+              {project.links?.github && (
                 <a
                   href={project.links.github}
                   target="_blank"
@@ -106,7 +106,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                   <span className="text-sm">Source Code</span>
                 </a>
               )}
-              {project.links.live && (
+              {project.links?.live && (
                 <a
                   href={project.links.live}
                   target="_blank"
@@ -129,38 +129,42 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           </div>
 
           {/* Details List */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <List size={16} className="text-blue-400" />
-              <h3 className="text-sm font-mono font-semibold text-white">Key Features</h3>
+          {project.details && (
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <List size={16} className="text-blue-400" />
+                <h3 className="text-sm font-mono font-semibold text-white">Key Features</h3>
+              </div>
+              <ul className="space-y-2">
+                {project.details.map((detail, index) => (
+                  <li key={index} className="flex items-start gap-2 text-sm text-gray-400">
+                    <span className="text-blue-400 mt-1">•</span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {project.details.map((detail, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-gray-400">
-                  <span className="text-blue-400 mt-1">•</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          )}
 
           {/* Technology Stack */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Code2 size={16} className="text-blue-400" />
-              <h3 className="text-sm font-mono font-semibold text-white">Technology Stack</h3>
+          {project.techStack && (
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Code2 size={16} className="text-blue-400" />
+                <h3 className="text-sm font-mono font-semibold text-white">Technology Stack</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 rounded-lg border border-blue-500/20"
+                  >
+                    <span className="text-xs text-gray-300">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 rounded-lg border border-blue-500/20"
-                >
-                  <span className="text-xs text-gray-300">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
 
           {/* Footer */}
           <div className="pt-4 border-t border-blue-500/10 text-center text-[10px] font-mono text-gray-400">
@@ -169,24 +173,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           </div>
         </div>
       </div>
-
-      {/* Add custom CSS for modal animation */}
-      <style jsx>{`
-        @keyframes modalSlide {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-modalSlide {
-          animation: modalSlide 0.3s ease-out;
-        }
-      `}</style>
     </div>
   );
 };

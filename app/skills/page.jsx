@@ -1,9 +1,14 @@
 import { Terminal, Layers } from 'lucide-react';
-import { skillsData } from '../components/data/SkillsData';
-import CategorySection from '../components/CategorySection';
-import Footer from '../components/Footer';
+import { skillsData } from '../../src/components/data/SkillsData';
+import CategorySection from '../../src/components/CategorySection';
+import Footer from '../../src/components/Footer';
 
-const Skills = () => {
+export const metadata = {
+  title: 'Skills & Technologies',
+  description: 'Technical skills, frameworks, tools, and cybersecurity capabilities of Ahdan Firdaus.',
+};
+
+export default function SkillsPage() {
   return (
     <div className="space-y-8">
       {/* Path navigasi */}
@@ -12,7 +17,7 @@ const Skills = () => {
         <span className="text-gray-600">/</span>
         <span className="text-gray-400">Skills</span>
         <span className="text-gray-600">/</span>
-        <span className="text-gray-400">Technologies</span>
+        <span className="text-blue-400">Technologies</span>
       </div>
 
       {/* Header */}
@@ -35,7 +40,7 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Quick Stats - Simple */}
+      {/* Quick Stats */}
       <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
         <div className="flex items-center gap-2 bg-[#0f1422] px-3 py-1.5 rounded-full border border-blue-500/20">
           <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
@@ -64,42 +69,7 @@ const Skills = () => {
         ))}
       </div>
 
-
-      {/* Add custom CSS for animations */}
-      <style>{`
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                    }
-                    }
-                    
-                    .animate-fadeIn {
-                        animation: fadeIn 0.5s ease-out forwards;
-                        }
-                        
-                        @keyframes slideDown {
-                            from {
-                                opacity: 0;
-                                transform: translateY(-10px);
-                                }
-                                to {
-                                    opacity: 1;
-                                    transform: translateY(0);
-                                    }
-                                    }
-                                    
-                                    .animate-slideDown {
-                                        animation: slideDown 0.3s ease-out;
-                                        }
-                                        `}</style>
-    <Footer/>
+      <Footer/>
     </div>
   );
-};
-
-export default Skills;
+}

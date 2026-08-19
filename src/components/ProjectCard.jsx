@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { Calendar, ExternalLink, Github, Eye, Clock } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import ProjectModal from './ProjectModal';
 
 const ProjectCard = ({ project, index }) => {
@@ -20,22 +22,22 @@ const ProjectCard = ({ project, index }) => {
           <div className="relative h-48 overflow-hidden bg-linear-to-br from-blue-500/10 to-blue-600/10">
             <div className="absolute inset-0 bg-linear-to-t from-[#0f1422] via-transparent to-transparent z-10" />
             
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="grid grid-cols-8 gap-1 opacity-20">
-                    {[...Array(64)].map((_, i) => (
-                      <div key={i} className="w-2 h-2 bg-blue-400/30 rounded-sm" />
-                    ))}
-                  </div>
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="grid grid-cols-8 gap-1 opacity-20">
+                  {[...Array(64)].map((_, i) => (
+                    <div key={i} className="w-2 h-2 bg-blue-400/30 rounded-sm" />
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
           </div>
 
           {/* Content */}
@@ -47,18 +49,18 @@ const ProjectCard = ({ project, index }) => {
               </h3>
               <div className="flex items-center gap-1 text-xs text-gray-500 shrink-0">
                 <Calendar size={12} />
-                <span>{project.date.split(' ')[0]}</span>
+                <span>{project.date?.split(' ')[0]}</span>
               </div>
             </div>
 
             {/* Short Description */}
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-4 line-clamp-2">
               {project.shortDesc}
             </p>
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.techStack.slice(0, 3).map((tech, i) => (
+              {project.techStack?.slice(0, 3).map((tech, i) => (
                 <span 
                   key={i}
                   className="px-2 py-1 bg-blue-500/10 text-blue-400 text-[10px] rounded-full border border-blue-500/20"
@@ -66,7 +68,7 @@ const ProjectCard = ({ project, index }) => {
                   {tech.name}
                 </span>
               ))}
-              {project.techStack.length > 3 && (
+              {project.techStack?.length > 3 && (
                 <span className="px-2 py-1 bg-blue-500/10 text-blue-400 text-[10px] rounded-full border border-blue-500/20">
                   +{project.techStack.length - 3}
                 </span>
