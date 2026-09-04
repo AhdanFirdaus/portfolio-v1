@@ -15,13 +15,13 @@ export const navItems = [
   {
     id: 'intro',
     label: 'Introduction',
-    icon: <Rocket className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <Rocket className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
       {
         id: 'about-me',
         label: 'About Me',
-        icon: <Terminal className="text-blue-300" size={16} strokeWidth={1.5} />,
+        icon: <Terminal className="text-accent-green" size={16} strokeWidth={1.5} />,
         type: 'file',
         path: '/'
       }
@@ -30,13 +30,13 @@ export const navItems = [
   {
     id: 'skills',
     label: 'Skills',
-    icon: <FolderClosed className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <FolderClosed className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
       {
         id: 'technologies',
         label: 'Technologies',
-        icon: <Code2 className="text-blue-300" size={16} strokeWidth={1.5} />,
+        icon: <Code2 className="text-accent-green" size={16} strokeWidth={1.5} />,
         type: 'file',
         path: '/skills'
       }
@@ -45,13 +45,13 @@ export const navItems = [
   {
     id: 'my-work',
     label: 'My Work',
-    icon: <FolderClosed className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <FolderClosed className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
       {
         id: 'projects-list',
         label: 'Projects',
-        icon: <FileCode className="text-blue-300" size={16} strokeWidth={1.5} />,
+        icon: <FileCode className="text-accent-green" size={16} strokeWidth={1.5} />,
         type: 'file',
         path: '/projects'
       }
@@ -60,7 +60,7 @@ export const navItems = [
   {
     id: 'achievements',
     label: 'Achievements',
-    icon: <GraduationCap className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <GraduationCap className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
       {
@@ -73,7 +73,7 @@ export const navItems = [
       {
         id: 'completions',
         label: 'Completions',
-        icon: <BadgeCheck className="text-emerald-400" size={16} strokeWidth={1.5} />,
+        icon: <BadgeCheck className="text-accent-green" size={16} strokeWidth={1.5} />,
         type: 'file',
         path: '/achievements/completions'
       }
@@ -82,13 +82,13 @@ export const navItems = [
   {
     id: 'blog-folder',
     label: 'Blog',
-    icon: <FolderClosed className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <FolderClosed className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'folder',
     children: [
       {
         id: 'blog-posts',
         label: 'Articles & CTF',
-        icon: <BookOpen className="text-blue-300" size={16} strokeWidth={1.5} />,
+        icon: <BookOpen className="text-accent-green" size={16} strokeWidth={1.5} />,
         type: 'file',
         path: '/blog'
       }
@@ -97,7 +97,7 @@ export const navItems = [
   {
     id: 'contacts',
     label: 'Contacts',
-    icon: <Mail className="text-blue-400" size={18} strokeWidth={1.5} />,
+    icon: <Mail className="text-accent-green" size={18} strokeWidth={1.5} />,
     type: 'file',
     path: '/contacts'
   }

@@ -32,7 +32,7 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Auto open folder berdasarkan path aktif
+  // Auto open folder based on active path
   useEffect(() => {
     navItems.forEach(item => {
       if (item.type === 'folder' && item.children) {
@@ -76,19 +76,19 @@ const Navbar = () => {
             onClick={() => toggleFolder(item.id)}
             onMouseEnter={() => setHoveredFolder(item.id)}
             onMouseLeave={() => setHoveredFolder(null)}
-            className="w-full flex items-center gap-2 px-3 py-2.5 text-gray-300 hover:text-white transition-all duration-200 group relative"
+            className="w-full flex items-center gap-2 px-3 py-2.5 text-neutral-300 hover:text-white transition-all duration-200 group relative cursor-pointer rounded-none"
             style={{ paddingLeft: `${paddingLeft + 12}px` }}
           >
-            <span className="absolute left-0 w-0.5 h-0 bg-blue-400 group-hover:h-full transition-all duration-200" />
+            <span className="absolute left-0 w-0.5 h-0 bg-accent-red group-hover:h-full transition-all duration-200" />
             
-            <span className="text-gray-500 group-hover:text-blue-400 transition-colors">
+            <span className="text-neutral-500 group-hover:text-accent-red transition-colors">
               {isOpen ? <ChevronDown size={14} strokeWidth={2} /> : <ChevronRight size={14} strokeWidth={2} />}
             </span>
             
-            <span className="text-gray-400 group-hover:text-blue-400 transition-colors">
+            <span className="text-neutral-400 group-hover:text-accent-red transition-colors">
               {isOpen ? 
-                <FolderOpen size={18} strokeWidth={1.5} className="text-blue-400" /> : 
-                <FolderClosed size={18} strokeWidth={1.5} className={isHovered ? "text-blue-400" : "text-gray-400"} />
+                <FolderOpen size={18} strokeWidth={1.5} className="text-accent-red" /> : 
+                <FolderClosed size={18} strokeWidth={1.5} className={isHovered ? "text-accent-red" : "text-neutral-400"} />
               }
             </span>
             
@@ -104,7 +104,6 @@ const Navbar = () => {
       );
     }
 
-    // Untuk file item
     const isActive = item.path === '/' ? pathname === '/' : pathname.startsWith(item.path);
 
     return (
@@ -113,16 +112,16 @@ const Navbar = () => {
         href={item.path}
         onClick={closeMobileMenu}
         className={
-          `w-full flex items-center gap-2 px-3 py-2.5 transition-all duration-200 group relative ${
+          `w-full flex items-center gap-2 px-3 py-2.5 transition-all duration-200 group relative rounded-none ${
             isActive 
-              ? 'text-blue-400 bg-blue-500/10 font-medium' 
-              : 'text-gray-300 hover:text-white hover:bg-blue-500/5'
+              ? 'text-accent-red bg-accent-red/10 font-medium' 
+              : 'text-neutral-300 hover:text-white hover:bg-accent-red/5'
           }`
         }
         style={{ paddingLeft: `${paddingLeft + 44}px` }}
       >
         <span className={`absolute left-0 w-0.5 transition-all duration-200 ${
-          isActive ? 'bg-blue-400 h-full' : 'bg-blue-400 h-0 group-hover:h-full'
+          isActive ? 'bg-accent-red h-full' : 'bg-accent-red h-0 group-hover:h-full'
         }`} />
         
         <span className="transition-colors">
@@ -131,7 +130,7 @@ const Navbar = () => {
         <span className="text-sm tracking-wide">{item.label}</span>
         
         {isActive && (
-          <span className="absolute right-3 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+          <span className="absolute right-3 w-1.5 h-1.5 bg-accent-red rounded-none" />
         )}
       </Link>
     );
@@ -142,7 +141,7 @@ const Navbar = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="lg:hidden fixed top-4 right-4 z-[100] p-2.5 bg-[#0e1320] border border-blue-500/20 rounded-md text-blue-400 hover:text-blue-300 transition-all duration-200 shadow-lg"
+        className="lg:hidden fixed top-4 right-4 z-[100] p-2.5 bg-bg-main border border-border-main rounded-none text-accent-red hover:text-white transition-all duration-200 shadow-xl cursor-pointer"
         aria-label="Toggle menu"
       >
         {isMobileMenuOpen ? (
@@ -155,7 +154,7 @@ const Navbar = () => {
       {/* Overlay for mobile */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[90]"
+          className="lg:hidden fixed inset-0 bg-black/90 backdrop-blur-sm z-[90]"
           onClick={closeMobileMenu}
         />
       )}
@@ -163,31 +162,27 @@ const Navbar = () => {
       {/* Sidebar Navigation */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-72 bg-[#090d16] border-r border-blue-500/15
+          fixed top-0 left-0 h-full w-72 bg-bg-main border-r border-border-main
           transform transition-all duration-300 ease-out z-[95]
           ${isMobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'}
           overflow-y-auto custom-scrollbar
-          flex flex-col
+          flex flex-col font-mono rounded-none
         `}
       >
-        {/* Header dengan VSCode style */}
-        <div className="sticky top-0 bg-[#090d16] border-b border-blue-500/15 p-3.5 z-10">
+        {/* Header */}
+        <div className="sticky top-0 bg-bg-main border-b border-border-main p-3.5 z-10">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDot className="text-blue-400" size={16} strokeWidth={1.5} />
-              <span className="text-xs font-mono text-gray-400">portfolio</span>
+              <span className="w-2.5 h-2.5 rounded-none bg-neutral-700"></span>
+              <span className="w-2.5 h-2.5 rounded-none bg-neutral-700"></span>
+              <span className="w-2.5 h-2.5 rounded-none bg-accent-red"></span>
             </div>
           </div>
         </div>
 
         {/* Explorer Label */}
-        <div className="px-3.5 py-2.5 text-[11px] font-mono font-semibold text-blue-400/90 uppercase tracking-widest border-b border-blue-500/10 flex items-center gap-2">
-          <span className="w-0.5 h-3 bg-blue-400 rounded-full"></span>
+        <div className="px-3.5 py-2.5 text-[11px] font-mono font-semibold text-accent-red uppercase tracking-widest border-b border-border-main flex items-center gap-2">
+          <span className="w-0.5 h-3 bg-accent-red"></span>
           EXPLORER
         </div>
 
@@ -197,18 +192,16 @@ const Navbar = () => {
         </nav>
 
         {/* Footer */}
-        <div className="bg-[#090d16] border-t border-blue-500/15 p-3 text-xs font-mono">
-          <div className="flex items-center justify-between text-gray-500">
+        <div className="bg-bg-main border-t border-border-main p-3 text-xs font-mono">
+          <div className="flex items-center justify-between text-neutral-400">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-                <span className="text-gray-400">Ready</span>
+                <span className="w-1.5 h-1.5 bg-accent-red"></span>
+                <span className="text-neutral-300">Dadan</span>
               </div>
-              <span className="text-gray-700">|</span>
-              <span className="text-gray-400">v1.0.0</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-blue-400/80 font-medium">UTF-8</span>
+              <span className="text-accent-red font-medium">UTF-8</span>
             </div>
           </div>
         </div>

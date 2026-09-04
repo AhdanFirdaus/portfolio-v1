@@ -1,31 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Kode+Mono:wght@400..700&display=swap');
 @import "tailwindcss";
 
+:root {
+  color-scheme: dark;
+  --font-mono: 'Inconsolata', 'Kode Mono', monospace;
+
+  /* Theme Variables */
+  --bg-main: #1a1b26;
+  --bg-card: #21222d;
+  --bg-hover: #2a2b3a;
+  --border-main: #383952;
+  --accent-red: #fb4f5c;
+  --accent-green: #5ac984;
+  --text-main: #f3f3f3;
+}
+
+@theme {
+  --font-mono: var(--font-mono);
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-bg-hover: var(--bg-hover);
+  --color-border-main: var(--border-main);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+  --color-text-main: var(--text-main);
+}
+
 @layer utilities {
-  /* Custom scrollbar untuk sidebar (optional class) */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: var(--bg-main);
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #1e3a5f;
-    border-radius: 999px;
+    background: var(--border-main);
+    border-radius: 0px;
     transition: background 0.2s ease;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #2563eb;
+    background: var(--accent-red);
   }
 
-  /* Animasi folder */
   @keyframes folderOpen {
     0% {
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(-4px);
     }
     100% {
       opacity: 1;
@@ -34,86 +57,65 @@
   }
 
   .animate-folderOpen {
-    animation: folderOpen 0.2s ease-out;
+    animation: folderOpen 0.15s ease-out;
   }
 
-  /* Glass effect mobile menu */
   .glass-effect {
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(37, 99, 235, 0.2);
+    background: var(--bg-main);
+    border-right: 1px solid var(--border-main);
   }
 }
 
-/* ========================= */
 /* GLOBAL SMOOTH SCROLLBAR */
-/* ========================= */
-
-/* Untuk Chrome, Edge, Safari */
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-main);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #1e3a8a, #2563eb);
-  border-radius: 999px;
-  transition: background 0.3s ease, opacity 0.3s ease;
-  opacity: 0.6;
+  background: var(--border-main);
+  border-radius: 0px;
+  transition: background 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  opacity: 1;
-  background: linear-gradient(180deg, #2563eb, #60a5fa);
+  background: var(--accent-red);
 }
 
-/* Untuk Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #2563eb transparent;
+  scrollbar-color: var(--accent-red) var(--bg-main);
+  border-radius: 0px !important;
 }
 
-/* Smooth scrolling behavior */
-html {
+html, body {
   scroll-behavior: smooth;
-}
-
-:root {
-  color-scheme: dark;
-}
-
-body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main);
   margin: 0;
-  font-family: 'Inconsolata', 'Kode Mono', monospace;
+  font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
-  color: #e2e8f0;
 }
 
-/* Main background */
 .bg-main {
-  background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 30%),
-              linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
+  background-color: var(--bg-main) !important;
 }
 
-/* Sidebar */
 .sidebar-bg {
-  background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
-  border-right: 1px solid rgba(37, 99, 235, 0.2);
+  background-color: var(--bg-main) !important;
+  border-right: 1px solid var(--border-main);
 }
 
-/* Hover menu */
 .menu-item-hover {
   transition: all 0.2s ease;
 }
 
 .menu-item-hover:hover {
-  background: rgba(37, 99, 235, 0.15);
-  border-left: 2px solid #3b82f6;
+  background: rgba(251, 79, 92, 0.1);
+  border-left: 2px solid var(--accent-red);
 }

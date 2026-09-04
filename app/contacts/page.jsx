@@ -8,11 +8,19 @@ import {
   PersonStanding
 } from 'lucide-react';
 import ContactForm from '../../src/components/ContactForm';
-import Footer from '../../src/components/Footer';
 
 export const metadata = {
-  title: 'Contacts',
-  description: 'Get in touch with Ahdan Firdaus for collaboration, software engineering, or cybersecurity projects.',
+  title: 'Contact',
+  description: 'Get in touch with Muhammad Ahdan Firdaus for software engineering projects, security research, CTF collaboration, or hire opportunities.',
+  keywords: ['Contact Ahdan Firdaus', 'Hire Software Engineer', 'Cybersecurity Specialist Contact', 'Muhammad Ahdan Firdaus Email'],
+  alternates: {
+    canonical: '/contacts',
+  },
+  openGraph: {
+    title: 'Contact | Muhammad Ahdan Firdaus',
+    description: 'Get in touch with Muhammad Ahdan Firdaus for software engineering projects, security research, CTF collaboration, or hire opportunities.',
+    url: '/contacts',
+  },
 };
 
 export default function ContactsPage() {
@@ -24,42 +32,37 @@ export default function ContactsPage() {
         username: "@ahdanfirdaus",
         icon: <Github size={18} />,
         link: "https://github.com/ahdanfirdaus",
-        color: "hover:text-gray-300"
+        color: "hover:text-accent-red"
       },
       {
         name: "LinkedIn",
         username: "in/ahdanfirdaus",
         icon: <Linkedin size={18} />,
         link: "https://www.linkedin.com/in/ahdan-firdaus-5751763b1/",
-        color: "hover:text-blue-400"
+        color: "hover:text-accent-red"
       },
       {
         name: "Instagram",
         username: "@ahdan.firdaus",
         icon: <Instagram size={18} />,
         link: "https://instagram.com/ahdan.firdaus",
-        color: "hover:text-pink-400"
+        color: "hover:text-accent-red"
       }
     ]
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 font-mono rounded-none">
       {/* Header */}
-      <div className="relative">
-        <div className="flex items-start gap-4">
-          <div className="p-3 bg-blue-500/10 rounded-md border border-blue-500/20">
-            <Mail size={26} className="text-blue-400" strokeWidth={1.5} />
-          </div>
-          <div>
-            <h1 className="text-3xl md:text-4xl font-mono font-bold text-white mb-2 tracking-tight">
-              Contacts
-            </h1>
-            <p className="text-gray-400 text-sm font-mono flex items-center gap-2">
-              <Terminal size={14} className="text-blue-400" />
-              <span>$ feel free to reach out</span>
-            </p>
-          </div>
+      <div className="relative border-b border-border-main pb-6">
+        <div>
+          <h1 className="text-3xl md:text-4xl font-mono font-bold text-white tracking-tight">
+            Contacts
+          </h1>
+          <p className="text-neutral-400 text-sm font-mono flex items-center gap-2 mt-2">
+            <Terminal size={14} className="text-accent-red" />
+            <span>$ feel free to reach out</span>
+          </p>
         </div>
       </div>
 
@@ -68,22 +71,22 @@ export default function ContactsPage() {
         {/* Left Column - Contact Info */}
         <div className="lg:col-span-1 space-y-4">
           {/* Email Card */}
-          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 p-5">
-            <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
-              <Mail size={15} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-400">email</span>
+          <div className="bg-bg-card border border-border-main p-5 rounded-none">
+            <div className="flex items-center gap-2 mb-4 border-b border-border-main pb-3">
+              <Mail size={15} className="text-accent-red" />
+              <span className="text-xs font-mono text-neutral-400">email</span>
             </div>
             
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-[#131928] rounded-md border border-blue-500/10">
-                <div className="p-2 bg-blue-500/10 rounded-md">
-                  <Mail size={15} className="text-blue-400" />
+              <div className="flex items-center gap-3 p-3 bg-bg-hover border border-border-main rounded-none">
+                <div className="p-2 bg-bg-card border border-border-main">
+                  <Mail size={15} className="text-accent-red" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-mono text-gray-500">primary</p>
+                  <p className="text-[10px] font-mono text-neutral-500">primary</p>
                   <a 
                     href={`mailto:${contactInfo.email}`}
-                    className="text-xs text-blue-400 hover:text-blue-300 font-mono transition-colors"
+                    className="text-xs text-accent-red hover:underline font-mono transition-colors"
                   >
                     {contactInfo.email}
                   </a>
@@ -92,10 +95,10 @@ export default function ContactsPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="mt-4 pt-4 border-t border-blue-500/10">
+            <div className="mt-4 pt-4 border-t border-border-main">
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="flex items-center justify-center gap-2 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-md text-blue-400 hover:text-blue-300 transition-all text-xs font-mono border border-blue-500/20"
+                className="flex items-center justify-center gap-2 py-2 bg-bg-hover hover:bg-accent-red/15 text-accent-red hover:text-white transition-all text-xs font-mono border border-border-main hover:border-accent-red/40 rounded-none cursor-pointer"
               >
                 <MessageSquare size={14} />
                 <span>Send Email Directly</span>
@@ -104,10 +107,10 @@ export default function ContactsPage() {
           </div>
 
           {/* Social Media Card */}
-          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 p-5">
-            <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
-              <PersonStanding size={15} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-400">social</span>
+          <div className="bg-bg-card border border-border-main p-5 rounded-none">
+            <div className="flex items-center gap-2 mb-4 border-b border-border-main pb-3">
+              <PersonStanding size={15} className="text-accent-red" />
+              <span className="text-xs font-mono text-neutral-400">social</span>
             </div>
             
             <div className="space-y-2">
@@ -117,14 +120,14 @@ export default function ContactsPage() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-3 p-3 bg-[#131928] hover:bg-[#1a2336] rounded-md border border-blue-500/10 transition-all group ${social.color}`}
+                  className={`flex items-center gap-3 p-3 bg-bg-hover hover:bg-border-main border border-border-main transition-all group rounded-none ${social.color}`}
                 >
-                  <div className="p-2 bg-blue-500/10 rounded-md group-hover:bg-blue-500/20 transition-colors">
+                  <div className="p-2 bg-bg-card border border-border-main group-hover:border-accent-red/30 transition-colors">
                     {social.icon}
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] font-mono text-gray-500">{social.name}</p>
-                    <p className="text-xs font-mono text-gray-300 group-hover:text-inherit transition-colors">
+                    <p className="text-[10px] font-mono text-neutral-500">{social.name}</p>
+                    <p className="text-xs font-mono text-neutral-300 group-hover:text-accent-red transition-colors">
                       {social.username}
                     </p>
                   </div>
@@ -136,24 +139,20 @@ export default function ContactsPage() {
 
         {/* Right Column - Contact Form */}
         <div className="lg:col-span-2">
-          <div className="bg-[#0d121f] rounded-lg border border-blue-500/15 overflow-hidden">
-            <div className="p-6">
-              <div className="mb-6">
-                <h2 className="text-xl font-mono font-semibold text-white mb-1 tracking-tight">
-                  Send me a message
-                </h2>
-                <p className="text-xs font-mono text-gray-400">
-                  Fill out the form below and I'll get back to you as soon as possible.
-                </p>
-              </div>
-
-              <ContactForm />
+          <div className="bg-bg-card border border-border-main p-6 rounded-none">
+            <div className="mb-6 border-b border-border-main pb-4">
+              <h2 className="text-xl font-mono font-bold text-white mb-1 tracking-tight">
+                Send me a message
+              </h2>
+              <p className="text-xs font-mono text-neutral-400">
+                Fill out the form below and I'll get back to you as soon as possible.
+              </p>
             </div>
+
+            <ContactForm />
           </div>
         </div>
       </div>
-
-      <Footer/>
     </div>
   );
 }

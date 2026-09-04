@@ -1,28 +1,34 @@
+import StackIcon from 'tech-stack-icons';
+
 const SkillCard = ({ skill, index }) => {
+  const iconSlug = (skill.iconName || '').trim().toLowerCase();
+  const hasIcon = Boolean(skill.icon || iconSlug);
+
   return (
     <div 
-      className="group relative"
+      className="group relative font-mono rounded-none"
       style={{ animationDelay: `${index * 50}ms` }}
     >
-      {/* Hover effect background */}
-      <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-blue-600/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      {/* Card */}
-      <div className="relative bg-[#1a1f2e] p-4 rounded-xl border border-blue-500/10 group-hover:border-blue-400/30 transition-all duration-300 group-hover:translate-y-[-2px]">
-        <div className="flex items-center gap-3">
-          {/* Skill icon */}
-          {skill.icon}
+      <div className="relative bg-bg-card p-4 border border-border-main group-hover:border-accent-red/40 transition-all duration-200 group-hover:-translate-y-0.5 flex items-center justify-between shadow-md rounded-none">
+        <div className="flex items-center gap-3 min-w-0">
+          {hasIcon && (
+            <div className="w-8 h-8 flex items-center justify-center shrink-0">
+              {skill.icon ? (
+                skill.icon
+              ) : (
+                <StackIcon name={iconSlug} className="w-7 h-7" />
+              )}
+            </div>
+          )}
           
-          {/* Skill name */}
-          <div>
-            <h3 className="text-sm font-mono font-medium text-white group-hover:text-blue-400 transition-colors">
+          <div className="truncate">
+            <h3 className="text-sm font-semibold text-white group-hover:text-accent-red transition-colors truncate">
               {skill.name}
             </h3>
           </div>
         </div>
 
-        {/* Decorative corner */}
-        <div className="absolute top-2 right-2 w-1 h-1 bg-blue-400/30 rounded-full group-hover:bg-blue-400 transition-colors" />
+        <div className="w-1.5 h-1.5 bg-neutral-700 group-hover:bg-accent-red transition-colors shrink-0 rounded-none ml-2" />
       </div>
     </div>
   );

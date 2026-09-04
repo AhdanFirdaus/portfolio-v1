@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Terminal, 
   MapPin, 
@@ -14,45 +12,39 @@ import {
   Briefcase,
   Award,
   Calendar,
-  Heart,
 } from 'lucide-react';
-import Footer from '../src/components/Footer';
+import { getProjects, getCertificates } from '../lib/notion';
 
-export default function Home() {
-  const handleDownloadCV = () => {
-    const cvUrl = '/Muhammad_Ahdan_Firdaus_CV.pdf';
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Muhammad_Ahdan_Firdaus_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+export const metadata = {
+  title: 'Ahdan Firdaus | Portfolio & Cybersecurity',
+  description: 'Personal portfolio of Muhammad Ahdan Firdaus - Software Engineer & Cybersecurity Enthusiast.',
+};
+
+export const revalidate = 10;
+
+export default async function Home() {
+  const projects = await getProjects();
+  const awardings = await getCertificates('awardings');
+  const completions = await getCertificates('completions');
+
+  const totalProjects = projects.length;
+  const totalCertificates = awardings.length + completions.length;
+  const experienceYears = new Date().getFullYear() - 2022;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 font-mono rounded-none">
       {/* Profile Section */}
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/15 via-transparent to-transparent blur-3xl -z-10" />
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column - Photo */}
           <div className="lg:col-span-4">
             <div className="relative group max-w-sm mx-auto lg:mx-0">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg opacity-25 group-hover:opacity-40 blur transition duration-300" />
-              
-              <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-blue-500/20 bg-[#0d121f]">
+              <div className="relative aspect-[4/5] overflow-hidden border border-border-main bg-bg-card rounded-none">
                 <img 
                   src="/me.png"
                   alt="Muhammad Ahdan Firdaus"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-none"
                 />
-              </div>
-
-              {/* Status badge */}
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-[#080c16] border border-blue-500/30 rounded-full px-3 py-1 flex items-center gap-1.5 shadow-lg whitespace-nowrap">
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-                <span className="text-[10px] font-mono text-gray-300">Open to opportunities</span>
               </div>
             </div>
           </div>
@@ -64,58 +56,59 @@ export default function Home() {
                 Muhammad Ahdan Firdaus
               </h1>
               
-              <div className="flex flex-wrap items-center gap-2 text-gray-400 mb-4">
-                <div className="flex items-center gap-1.5 bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/20">
-                  <Code2 size={13} className="text-blue-400" />
+              <div className="flex flex-wrap items-center gap-2 text-neutral-400 mb-4">
+                <div className="flex items-center gap-1.5 bg-bg-card px-3 py-1 border border-border-main rounded-none">
+                  <Code2 size={13} className="text-accent-red" />
                   <span className="text-xs font-mono">Software Engineer</span>
                 </div>
-                <span className="text-gray-600">•</span>
-                <div className="flex items-center gap-1.5 bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/20">
-                  <Shield size={13} className="text-blue-400" />
-                  <span className="text-xs font-mono">Cybersecurity Enthusiast</span>
+                <span className="text-neutral-700">•</span>
+                <div className="flex items-center gap-1.5 bg-bg-card px-3 py-1 border border-border-main rounded-none">
+                  <Shield size={13} className="text-accent-red" />
+                  <span className="text-xs font-mono">Penetration Tester</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-                <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-[#0d121f] p-2.5 rounded-md border border-blue-500/15">
-                  <MapPin size={14} className="text-blue-400 shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 bg-bg-card p-2.5 border border-border-main rounded-none">
+                  <MapPin size={14} className="text-accent-red shrink-0" />
                   <span className="truncate">Semarang, Indonesia</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-[#0d121f] p-2.5 rounded-md border border-blue-500/15">
-                  <School size={14} className="text-blue-400 shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 bg-bg-card p-2.5 border border-border-main rounded-none">
+                  <School size={14} className="text-accent-red shrink-0" />
                   <span className="truncate">SMK N 7 Semarang</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-[#0d121f] p-2.5 rounded-md border border-blue-500/15">
-                  <Calendar size={14} className="text-blue-400 shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 bg-bg-card p-2.5 border border-border-main rounded-none">
+                  <Calendar size={14} className="text-accent-red shrink-0" />
                   <span className="truncate">SIJA · 2023-2027</span>
                 </div>
               </div>
             </div>
 
-            <button
-              onClick={handleDownloadCV}
-              className="group inline-flex items-center gap-2 px-5 py-2.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 rounded-md text-blue-400 hover:text-blue-300 transition-all duration-200 cursor-pointer font-mono text-sm"
+            <a
+              href="/Muhammad_Ahdan_Firdaus_CV.pdf"
+              download="Muhammad_Ahdan_Firdaus_CV.pdf"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 bg-bg-card hover:bg-accent-red/15 border border-border-main hover:border-accent-red/40 text-accent-red hover:text-white transition-all duration-200 cursor-pointer font-mono text-sm rounded-none"
             >
               <Download size={15} strokeWidth={1.5} className="group-hover:translate-y-0.5 transition-transform" />
               <span>Download CV</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Quote Section */}
       <div className="relative mt-6">
-        <div className="relative bg-[#0d121f] p-6 rounded-lg border border-blue-500/20 overflow-hidden">
+        <div className="relative bg-bg-card p-6 border border-border-main rounded-none">
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-md">
-              <Quote size={22} className="text-blue-400" strokeWidth={1.5} />
+            <div className="p-3 bg-bg-hover border border-border-main rounded-none">
+              <Quote size={22} className="text-accent-red" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
               <p className="text-xl md:text-2xl font-mono text-white mb-2 tracking-tight">
                 "Strive for progress, not perfection."
               </p>
-              <p className="text-gray-400 text-xs font-mono flex items-center gap-2">
-                <span className="w-6 h-px bg-blue-400/50"></span>
+              <p className="text-neutral-400 text-xs font-mono flex items-center gap-2">
+                <span className="w-6 h-px bg-accent-red"></span>
                 words I live by
               </p>
             </div>
@@ -126,30 +119,30 @@ export default function Home() {
       {/* Bio Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
         <div className="lg:col-span-2 space-y-4">
-          <div className="bg-[#0d121f] p-6 rounded-lg border border-blue-500/15 h-full">
-            <div className="flex items-center gap-2 mb-4 border-b border-blue-500/10 pb-3">
-              <Terminal size={16} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-300">$ cat about.txt</span>
+          <div className="bg-bg-card p-6 border border-border-main h-full rounded-none">
+            <div className="flex items-center gap-2 mb-4 border-b border-border-main pb-3">
+              <Terminal size={16} className="text-accent-red" />
+              <span className="text-xs font-mono text-neutral-300">$ cat about.txt</span>
             </div>
             
-            <div className="space-y-4 text-gray-300 text-sm font-mono leading-relaxed">
+            <div className="space-y-4 text-neutral-300 text-sm font-mono leading-relaxed">
               <p>
-                <span className="text-blue-400 font-semibold">$ whoami</span>
+                <span className="text-accent-red font-semibold">$ whoami</span>
                 <br />
-                Hey! I’m <span className="text-blue-400">Muhammad Ahdan Firdaus</span>, 
+                Hey! I'm <span className="text-accent-red">Muhammad Ahdan Firdaus</span>, 
                 a Software Engineer and Cybersecurity enthusiast from 
                 SMK Negeri 7 Semarang, majoring in SIJA.
               </p>
               
               <p>
-                <span className="text-blue-400 font-semibold">$ what_i_do</span>
+                <span className="text-accent-red font-semibold">$ what_i_do</span>
                 <br />
                 I focus on building modern, responsive web applications and enjoy working across 
                 both frontend and backend to create clean, maintainable, and scalable systems.
               </p>
               
               <p>
-                <span className="text-blue-400 font-semibold">$ extra</span>
+                <span className="text-accent-red font-semibold">$ extra</span>
                 <br />
                 Alongside development, I explore cybersecurity to better understand how applications 
                 can be built with security in mind.
@@ -159,63 +152,39 @@ export default function Home() {
         </div>
 
         <div className="space-y-4">
-          {/* Interests Card */}
-          <div className="bg-[#0d121f] p-5 rounded-lg border border-blue-500/15">
-            <div className="flex items-center gap-2 mb-3 border-b border-blue-500/10 pb-2">
-              <Heart size={15} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-400">interests</span>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {[
-                'Web Development', 
-                'Web Security', 
-                'React', 
-                'Next.js', 
-                'Penetration Testing', 
-                'Cloud',
-                'DevOps',
-                'Network Security'
-              ].map((item) => (
-                <span key={item} className="px-2 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-mono rounded-md border border-blue-500/20">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
           {/* Leadership Card */}
-          <div className="bg-[#0d121f] p-5 rounded-lg border border-blue-500/15">
-            <div className="flex items-center gap-2 mb-3 border-b border-blue-500/10 pb-2">
-              <Briefcase size={15} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-400">leadership</span>
+          <div className="bg-bg-card p-5 border border-border-main rounded-none">
+            <div className="flex items-center gap-2 mb-3 border-b border-border-main pb-2">
+              <Briefcase size={15} className="text-accent-red" />
+              <span className="text-xs font-mono text-neutral-400">leadership</span>
             </div>
             <div className="grid grid-cols-2 gap-2 font-mono">
-              <div className="flex items-center gap-2 p-2 bg-blue-500/5 rounded-md border border-blue-500/10">
+              <div className="flex items-center gap-2 p-2 bg-bg-hover border border-border-main rounded-none">
                 <Award size={13} className="text-amber-400 shrink-0" />
-                <span className="text-xs text-gray-300">Project Mgmt</span>
+                <span className="text-xs text-neutral-300">Project Management</span>
               </div>
-              <div className="flex items-center gap-2 p-2 bg-blue-500/5 rounded-md border border-blue-500/10">
+              <div className="flex items-center gap-2 p-2 bg-bg-hover border border-border-main rounded-none">
                 <Award size={13} className="text-amber-400 shrink-0" />
-                <span className="text-xs text-gray-300">Community</span>
+                <span className="text-xs text-neutral-300">Community</span>
               </div>
             </div>
           </div>
 
           {/* Connect Card */}
-          <div className="bg-[#0d121f] p-5 rounded-lg border border-blue-500/15">
-            <div className="flex items-center gap-2 mb-3 border-b border-blue-500/10 pb-2">
-              <Mail size={15} className="text-blue-400" />
-              <span className="text-xs font-mono text-gray-400">connect</span>
+          <div className="bg-bg-card p-5 border border-border-main rounded-none">
+            <div className="flex items-center gap-2 mb-3 border-b border-border-main pb-2">
+              <Mail size={15} className="text-accent-red" />
+              <span className="text-xs font-mono text-neutral-400">connect</span>
             </div>
             <div className="flex gap-2">
-              <a href="https://github.com/AhdanFirdaus" target="_blank" rel="noopener noreferrer" className="p-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-md transition-colors border border-blue-500/20">
-                <Github size={16} className="text-gray-400 hover:text-blue-400" />
+              <a href="https://github.com/AhdanFirdaus" target="_blank" rel="noopener noreferrer" className="p-2 bg-bg-hover hover:bg-accent-red/20 border border-border-main text-neutral-400 hover:text-accent-red transition-colors rounded-none">
+                <Github size={16} />
               </a>
-              <a href="https://www.linkedin.com/in/ahdan-firdaus-5751763b1/" target="_blank" rel="noopener noreferrer" className="p-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-md transition-colors border border-blue-500/20">
-                <Linkedin size={16} className="text-gray-400 hover:text-blue-400" />
+              <a href="https://www.linkedin.com/in/ahdan-firdaus-5751763b1/" target="_blank" rel="noopener noreferrer" className="p-2 bg-bg-hover hover:bg-accent-red/20 border border-border-main text-neutral-400 hover:text-accent-red transition-colors rounded-none">
+                <Linkedin size={16} />
               </a>
-              <a href="mailto:muhammadahdanf1@gmail.com" className="p-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-md transition-colors border border-blue-500/20">
-                <Mail size={16} className="text-gray-400 hover:text-blue-400" />
+              <a href="mailto:muhammadahdanf1@gmail.com" className="p-2 bg-bg-hover hover:bg-accent-red/20 border border-border-main text-neutral-400 hover:text-accent-red transition-colors rounded-none">
+                <Mail size={16} />
               </a>
             </div>
           </div>
@@ -224,44 +193,42 @@ export default function Home() {
 
       {/* Terminal Style Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-        <div className="bg-[#0d121f] p-4 rounded-lg border border-blue-500/15">
-          <div className="flex items-center gap-2 text-xs font-mono text-gray-500 mb-2">
-            <span className="text-blue-400">$</span>
+        <div className="bg-bg-card p-4 border border-border-main rounded-none">
+          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-2">
+            <span className="text-accent-red">$</span>
             <span>projects</span>
           </div>
-          <p className="text-white font-mono text-2xl font-bold">8<span className="text-blue-400 text-sm ml-1">+</span></p>
-          <p className="text-xs font-mono text-gray-500 mt-1">completed</p>
+          <p className="text-white font-mono text-2xl font-bold">{totalProjects}<span className="text-accent-red text-sm ml-1">+</span></p>
+          <p className="text-xs font-mono text-neutral-500 mt-1">completed</p>
         </div>
 
-        <div className="bg-[#0d121f] p-4 rounded-lg border border-blue-500/15">
-          <div className="flex items-center gap-2 text-xs font-mono text-gray-500 mb-2">
-            <span className="text-blue-400">$</span>
+        <div className="bg-bg-card p-4 border border-border-main rounded-none">
+          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-2">
+            <span className="text-accent-red">$</span>
             <span>experience</span>
           </div>
-          <p className="text-white font-mono text-2xl font-bold">2<span className="text-blue-400 text-sm ml-1">yrs</span></p>
-          <p className="text-xs font-mono text-gray-500 mt-1">in development</p>
+          <p className="text-white font-mono text-2xl font-bold">{experienceYears}<span className="text-accent-red text-sm ml-1">yrs</span></p>
+          <p className="text-xs font-mono text-neutral-500 mt-1">in development (since 2022)</p>
         </div>
 
-        <div className="bg-[#0d121f] p-4 rounded-lg border border-blue-500/15">
-          <div className="flex items-center gap-2 text-xs font-mono text-gray-500 mb-2">
-            <span className="text-blue-400">$</span>
+        <div className="bg-bg-card p-4 border border-border-main rounded-none">
+          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-2">
+            <span className="text-accent-red">$</span>
             <span>certifications</span>
           </div>
-          <p className="text-white font-mono text-2xl font-bold">13</p>
-          <p className="text-xs font-mono text-gray-500 mt-1">earned</p>
+          <p className="text-white font-mono text-2xl font-bold">{totalCertificates}</p>
+          <p className="text-xs font-mono text-neutral-500 mt-1">earned</p>
         </div>
 
-        <div className="bg-[#0d121f] p-4 rounded-lg border border-blue-500/15">
-          <div className="flex items-center gap-2 text-xs font-mono text-gray-500 mb-2">
-            <span className="text-blue-400">$</span>
+        <div className="bg-bg-card p-4 border border-border-main rounded-none">
+          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-2">
+            <span className="text-accent-red">$</span>
             <span>coffee</span>
           </div>
           <p className="text-white font-mono text-2xl font-bold">∞</p>
-          <p className="text-xs font-mono text-gray-500 mt-1">cups and counting</p>
+          <p className="text-xs font-mono text-neutral-500 mt-1">cups and counting</p>
         </div>
       </div>
-
-      <Footer/>
     </div>
   );
 }

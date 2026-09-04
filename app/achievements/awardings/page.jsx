@@ -1,10 +1,18 @@
-import { Award } from 'lucide-react';
 import CertificateLayout from '../../../src/Layouts/CertificateLayout';
 import { getCertificates } from '../../../lib/notion';
 
 export const metadata = {
   title: 'Awardings & Honors',
-  description: 'Competition awards and honors earned by Ahdan Firdaus in Cyber Security and Web Development.',
+  description: 'Competition awards, CTF achievements, and honors earned by Muhammad Ahdan Firdaus in Cyber Security and Software Engineering.',
+  keywords: ['Ahdan Firdaus Awards', 'CTF Competition Winners', 'Cybersecurity Honors', 'Software Engineering Awards'],
+  alternates: {
+    canonical: '/achievements/awardings',
+  },
+  openGraph: {
+    title: 'Awardings & Honors | Muhammad Ahdan Firdaus',
+    description: 'Competition awards, CTF achievements, and honors earned by Muhammad Ahdan Firdaus in Cyber Security and Software Engineering.',
+    url: '/achievements/awardings',
+  },
 };
 
 export const revalidate = 10; // Auto-revalidate Notion data every 10s
@@ -15,7 +23,6 @@ export default async function AwardingsPage() {
   return (
     <CertificateLayout
       title="Awardings"
-      icon={Award}
       data={data}
       type="awardings"
     />

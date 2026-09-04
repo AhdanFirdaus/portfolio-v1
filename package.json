@@ -5,18 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node -e \"require('fs').rmSync('.next', { recursive: true, force: true })\" && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@notionhq/client": "^2.2.15",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "lucide-react": "^0.564.0",
     "next": "^15.5.23",
     "notion-to-md": "^3.1.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.1",
     "tech-stack-icons": "^3.5.8"
   },
   "devDependencies": {

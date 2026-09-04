@@ -25,4 +25,4 @@ out
 *.sw?
 
 # Environment
-.env
+.env.local

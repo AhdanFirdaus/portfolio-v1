@@ -1,9 +1,9 @@
-export default function Footer({ name = "Ahdan Firdaus", year = new Date().getFullYear() }) {
+export default function Footer({ name = "dadan", year = new Date().getFullYear() }) {
   return (
-    <div className="text-center text-[10px] font-mono text-gray-400 pt-4 border-t border-blue-500/10">
-      <span className="text-blue-400/50">❯</span>{" "}
-      Crafted with ❤️ by {name} © {year}{" "}
-      <span className="text-blue-400/50">❮</span>
-    </div>
+    <footer className="w-full text-center text-xs font-mono text-neutral-400 pt-6 pb-2 border-t border-border-main mt-auto rounded-none">
+      <div className="flex items-center justify-center gap-2">
+        <span>fueled by <span className="text-sm">☕</span> & code by <span className="text-accent-red font-semibold">{name}</span> © {year}</span>
+      </div>
+    </footer>
   );
 }
