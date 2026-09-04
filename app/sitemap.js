@@ -1,7 +1,7 @@
 import { getEventsByYearNotion } from '../lib/notion';
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahdanfirdaus.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahdanfirdaus-dev.vercel.app';
 
   // Static routes
   const staticRoutes = [
