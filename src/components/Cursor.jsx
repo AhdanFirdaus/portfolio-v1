@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
 const Cursor = () => {
@@ -31,7 +33,7 @@ const Cursor = () => {
         const dx = mousePosition.current.x - cursorPosition.current.x;
         const dy = mousePosition.current.y - cursorPosition.current.y;
 
-        const easing = 0.18;
+        const easing = 0.25;
 
         cursorPosition.current.x += dx * easing;
         cursorPosition.current.y += dy * easing;
@@ -47,7 +49,6 @@ const Cursor = () => {
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
 
-      // Kalau baru muncul lagi, snap posisi biar gak ketinggalan
       if (!isVisible.current) {
         cursorPosition.current = { x: e.clientX, y: e.clientY };
         showCursor();
@@ -75,7 +76,7 @@ const Cursor = () => {
 
       timeoutRef.current = setTimeout(() => {
         hideCursor();
-      }, 1200);
+      }, 1500);
     };
 
     const handleMouseLeaveWindow = () => {
@@ -138,58 +139,53 @@ const Cursor = () => {
             pointer-events: none;
             z-index: 99999;
             will-change: transform, opacity;
-            transition: opacity .25s ease, visibility .25s ease;
+            transition: opacity .2s ease, visibility .2s ease;
             opacity: 0;
             visibility: hidden;
           }
 
           .custom-cursor {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #3b82f6;
+            width: 12px;
+            height: 12px;
+            border-radius: 0px !important;
+            background: var(--accent-red);
             transform: translate(-50%, -50%);
-            box-shadow:
-              0 0 10px rgba(59,130,246,0.8),
-              0 0 20px rgba(59,130,246,0.6),
-              0 0 35px rgba(59,130,246,0.4);
+            box-shadow: 0 0 10px rgba(251, 79, 92, 0.7);
             transition: 
-              width .18s ease,
-              height .18s ease,
-              background .18s ease,
-              box-shadow .18s ease;
+              width .15s ease,
+              height .15s ease,
+              background .15s ease,
+              border .15s ease,
+              box-shadow .15s ease;
           }
 
           .custom-cursor::before {
             content: '';
             position: absolute;
-            inset: -12px;
-            border-radius: 50%;
-            background: rgba(59,130,246,0.15);
-            transition: .25s ease;
+            inset: -4px;
+            border-radius: 0px !important;
+            border: 1px solid rgba(251, 79, 92, 0.4);
+            transition: .2s ease;
           }
 
           .custom-cursor.hover {
-            width: 24px;
-            height: 24px;
-            background: #8b5cf6;
-            box-shadow:
-              0 0 20px rgba(139,92,246,.9),
-              0 0 40px rgba(139,92,246,.6);
+            width: 26px;
+            height: 26px;
+            background: rgba(251, 79, 92, 0.15);
+            border: 1.5px solid var(--accent-red);
+            box-shadow: 0 0 15px rgba(251, 79, 92, 0.5);
           }
 
           .custom-cursor.hover::before {
-            inset: -16px;
-            background: rgba(139,92,246,.25);
+            inset: -6px;
+            border-color: rgba(251, 79, 92, 0.6);
           }
 
           .custom-cursor.click {
-            width: 10px;
-            height: 10px;
-            background: #ec4899;
-            box-shadow:
-              0 0 20px rgba(236,72,153,.8),
-              0 0 40px rgba(236,72,153,.6);
+            width: 8px;
+            height: 8px;
+            background: var(--text-main);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
           }
         `}
       </style>

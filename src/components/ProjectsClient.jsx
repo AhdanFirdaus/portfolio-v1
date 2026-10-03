@@ -1,18 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { Terminal, Award, BadgeCheck } from 'lucide-react';
-import CertificateCard from '../components/CertificateCard';
-import Pagination from '../components/Pagination';
+import { Terminal, Briefcase } from 'lucide-react';
+import ProjectCard from './ProjectCard';
+import Pagination from './Pagination';
 
 const ITEMS_PER_PAGE = 12;
 
-const CertificateLayout = ({ title, data = [], type }) => {
+export default function ProjectsClient({ projects }) {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -25,49 +25,44 @@ const CertificateLayout = ({ title, data = [], type }) => {
       <div className="relative border-b border-border-main pb-6">
         <div>
           <h1 className="text-3xl md:text-4xl font-mono font-bold text-white tracking-tight">
-            {title}
+            Projects
           </h1>
           <p className="text-neutral-400 text-sm font-mono flex items-center gap-2 mt-2">
             <Terminal size={14} className="text-accent-red" />
-            <span>$ things I’ve earned along the way</span>
+            <span>$ a collection of things I’ve built</span>
           </p>
         </div>
       </div>
 
       {/* Stats */}
       <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-        <div className={`flex items-center gap-2 px-3 py-1.5 border rounded-none ${
-          type === 'awardings'
-            ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
-            : 'bg-accent-red/10 border-accent-red/30 text-accent-red'
-        }`}>
-          {type === 'awardings' ? <Award size={14} /> : <BadgeCheck size={14} />}
-          <span className="text-neutral-400">Total:</span>
-          <span className="text-white font-semibold">{data.length}</span>
+        <div className="flex items-center gap-2 bg-bg-card px-3 py-1.5 border border-border-main rounded-none">
+          <Briefcase size={14} className="text-accent-red" />
+          <span className="text-neutral-400">Total Projects:</span>
+          <span className="text-white font-semibold">{projects.length}</span>
         </div>
       </div>
 
-      {/* Certificates Grid */}
-      {data.length === 0 ? (
+      {/* Projects Grid */}
+      {projects.length === 0 ? (
         <div className="text-center py-16 px-4 bg-bg-card border border-border-main rounded-none space-y-3 font-mono">
           <p className="text-lg md:text-xl font-bold text-white">Oops, data masih kosong atau tidak terload</p>
-          <p className="text-xs md:text-sm text-neutral-400">$ no certificates or awardings found in Notion database</p>
+          <p className="text-xs md:text-sm text-neutral-400">$ no projects found in Notion database</p>
         </div>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {currentItems.map((item, index) => (
-              <CertificateCard 
-                key={item.id} 
-                item={item} 
+            {currentProjects.map((project, index) => (
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
                 index={index}
-                type={type === 'awardings' ? 'award' : 'completion'}
               />
             ))}
           </div>
 
-          {/* Pagination - Only appears if more than 12 items */}
-          {data.length > ITEMS_PER_PAGE && (
+          {/* Pagination - Only appears if more than 12 projects */}
+          {projects.length > ITEMS_PER_PAGE && (
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
@@ -78,6 +73,4 @@ const CertificateLayout = ({ title, data = [], type }) => {
       )}
     </div>
   );
-};
-
-export default CertificateLayout;
+}
