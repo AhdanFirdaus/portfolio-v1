@@ -3,7 +3,7 @@ import Navbar from '../src/components/Navbar';
 import Cursor from '../src/components/Cursor';
 import Footer from '../src/components/Footer';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahdanfirdaus.vercel.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahdanfirdaus.my.id';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -13,6 +13,7 @@ export const metadata = {
   },
   description: 'Personal portfolio & CTF writeups of Muhammad Ahdan Firdaus (dadan) - Software Engineer & Cybersecurity Enthusiast from SMK Negeri 7 Semarang. Showcasing web applications, security research, and technical skills.',
   keywords: [
+    'ahdanfirdaus.my.id',
     'Muhammad Ahdan Firdaus',
     'dadan',
     'Ahdan Firdaus',
@@ -38,7 +39,7 @@ export const metadata = {
     locale: 'id_ID',
     url: siteUrl,
     title: 'Muhammad Ahdan Firdaus | Software Engineer & Cybersecurity',
-    description: 'Explore web development projects, skills, certifications, and technical CTF writeups by Muhammad Ahdan Firdaus.',
+    description: 'Explore web development projects, skills, certifications, and technical CTF writeups by Muhammad Ahdan Firdaus on ahdanfirdaus.my.id.',
     siteName: 'Ahdan Firdaus Portfolio',
     images: [
       {
@@ -72,32 +73,44 @@ export const metadata = {
   },
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Muhammad Ahdan Firdaus',
-  alternateName: 'dadan',
-  url: siteUrl,
-  image: `${siteUrl}/me.png`,
-  jobTitle: 'Software Engineer & Cybersecurity Specialist',
-  alumniOf: {
-    '@type': 'EducationalOrganization',
-    name: 'SMK Negeri 7 Semarang'
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Muhammad Ahdan Firdaus Portfolio',
+    url: siteUrl,
+    author: {
+      '@type': 'Person',
+      name: 'Muhammad Ahdan Firdaus'
+    }
   },
-  sameAs: [
-    'https://github.com/AhdanFirdaus',
-    'https://www.linkedin.com/in/ahdan-firdaus-5751763b1/',
-    'https://instagram.com/ahdan.firdaus'
-  ],
-  knowsAbout: [
-    'Web Development',
-    'React.js',
-    'Next.js',
-    'Cybersecurity',
-    'Capture The Flag (CTF)',
-    'Frontend Engineering'
-  ]
-};
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Muhammad Ahdan Firdaus',
+    alternateName: ['dadan', 'ahdanfirdaus'],
+    url: siteUrl,
+    image: `${siteUrl}/me.png`,
+    jobTitle: 'Software Engineer & Cybersecurity Specialist',
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'SMK Negeri 7 Semarang'
+    },
+    sameAs: [
+      'https://github.com/AhdanFirdaus',
+      'https://www.linkedin.com/in/ahdan-firdaus-5751763b1/',
+      'https://instagram.com/ahdan.firdaus'
+    ],
+    knowsAbout: [
+      'Web Development',
+      'React.js',
+      'Next.js',
+      'Cybersecurity',
+      'Capture The Flag (CTF)',
+      'Frontend Engineering'
+    ]
+  }
+];
 
 export default function RootLayout({ children }) {
   return (
